@@ -1,0 +1,15 @@
+node_modules/
+downloads/
+cards/
+*.mp3
+.leia-token.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+*.tgz
+.DS_Store
