@@ -1,0 +1,28 @@
+{
+  "name": "leia",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn a playlist into a Yoto MYO card in one command",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "bin": {
+    "leia": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "node src/cli.ts",
+    "doctor": "node src/cli.ts --doctor",
+    "login": "node src/cli.ts --login",
+    "whoami": "node src/cli.ts --whoami",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.8.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  }
+}
